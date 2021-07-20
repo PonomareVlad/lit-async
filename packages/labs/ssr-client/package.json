@@ -1,5 +1,5 @@
 {
-  "name": "@lit-labs/ssr-client",
+  "name": "@lit-async/ssr-client",
   "version": "1.0.0-rc.1",
   "description": "Client package for @lit-labs/ssr.",
   "license": "BSD-3-Clause",
@@ -48,9 +48,9 @@
     "internal-scripts": "^1.0.0"
   },
   "dependencies": {
-    "lit": "^2.0.0-rc.1",
-    "lit-html": "^2.0.0-rc.1",
-    "@lit/reactive-element": "^1.0.0-rc.1"
+    "lit": "npm:@lit-async/lit@latest",
+    "lit-html": "npm:@lit-async/lit-html@latest",
+    "@lit/reactive-element": "npm:@lit-async/reactive-element@latest"
   },
   "publishConfig": {
     "access": "public"
