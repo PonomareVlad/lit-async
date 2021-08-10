@@ -16,6 +16,8 @@ import {serverUntil} from '@lit-labs/ssr-client/directives/server-until.js';
 import {ServerController} from '@lit-labs/ssr-client/controllers/server-controller.js';
 import {StatusRenderer, Task} from '@lit-labs/task';
 
+import './nested-component.js';
+
 export const initialData = {
   name: 'SSR',
   message: 'This is a test.',
@@ -95,6 +97,12 @@ export class MyElement extends LitElement {
       <header>I'm a my-element!</header>
       <div><i>this.prop</i>: ${this.prop}</div>
       <section>
+        ${serverUntil(
+          asyncContent(html` <nested-component></nested-component>`, 100),
+          'loading...'
+        )}
+      </section>
+      <section>
         ${serverUntil(asyncContent('async content', 100), 'loading...')}
       </section>
       <div><i>this.attr</i>: ${this.attr}</div>
@@ -106,6 +114,13 @@ export class MyElement extends LitElement {
           </ul>`,
         error: (error: unknown) => `Error loading: ${error}`,
       })}
+      <div>
+        <button @click=${this.requestUpdate}>@click — requestUpdate()</button>
+        <br />
+        <button onClick="this.parentNode.parentNode.host.requestUpdate()">
+          onClick — requestUpdate()
+        </button>
+      </div>
     `;
   }
 }
